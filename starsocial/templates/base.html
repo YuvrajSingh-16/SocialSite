@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Star-Social</title>
+
+    <!-- Bootstrap css -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <link href='https://fonts.googleapis.com/css?family=Aladin|Bilbo+Swash+Caps|Boogaloo' rel='stylesheet'>
+      <style>
+      body {
+          font-family: 'Aladin';font-size: 22px;
+      }
+      </style>
+
+    <link rel="stylesheet" href="{% static 'starsocial/css/master.css' %}">
+  </head>
+
+  <body class='loader'>
+
+   <nav class='navbar navbar-dark mynav' role='navigation' id='navbar'>
+      <div class="container">
+        <a class='navbar-brand mynav' href="{% url 'home' %}">Star Social</a>
+
+        <ul class='nav navbar-nav navbar-left'>
+          <li>
+            <button type="button" class="btn btn-success"><a href='{% url 'msg' %}'>Msg!</a></button>
+          </li>
+        </ul>
+
+        <ul class='nav navbar-nav navbar-right'>
+          {% if user.is_authenticated %}
+          <li>
+            <button type="button" class="btn btn-light"><a href="{% url 'posts:create' %}">Post</a></button>
+            <button type="button" class="btn btn-light"><a href="{% url 'groups:all' %}">Groups</a></button>
+            <button type="button" class="btn btn-light"><a href="{% url 'groups:create' %}">Create_Group</a></button>
+            <button type="button" class="btn btn-light"><a href="{% url 'accounts:logout' %}">Log Out</a></button>
+          </li>
+
+          {% else %}
+            <li>
+              <button type="button" class="btn btn-light"><a class='nav-item' href="{% url 'groups:all' %}">Groups</a></button>
+
+              <button type="button" class="btn btn-light"><a class='nav-item' href="{% url 'accounts:login' %}">Log In</a></button>
+              <button type="button" class="btn btn-light"><a class='nav-item' href="{% url 'accounts:signup' %}">Sign Up</a></button>
+            </li>
+
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
+    <br>
+    <div class="container mycontent"><br>
+      {% block content %}
+
+      {% endblock %}
+    </div>
+<!-- <canvas id="canvas"  width="600" height="600">
+</canvas> -->
+
+<script>
+// When the user scrolls down 20px from the top of the document, slide down the navbar
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    document.getElementById("navbar").style.top = "0";
+  } else {
+    document.getElementById("navbar").style.top = "-50px";
+  }
+}
+</script>
+
+  <script type="text/javascript" src="{% static 'starsocial/js/master.js' %}" rel='stylesheet'>
+  </script>
+
+</html>
