@@ -11,3 +11,6 @@ class ThanksPage(TemplateView):
 
 class Msg(TemplateView):
     template_name = 'msg.html'
+
+class About(TemplateView):
+    template_name = 'about.html'

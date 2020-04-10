@@ -27,5 +27,6 @@ urlpatterns = [
     path('thanks/', views.ThanksPage.as_view(), name='thanks'),
     path('posts/', include('posts.urls', namespace='posts')),
     path('groups/', include('groups.urls', namespace='group')),
-    path('msg/', views.Msg.as_view(), name='msg')
+    path('msg/', views.Msg.as_view(), name='msg'),
+    path('about/', views.About.as_view(), name='about')
 ]

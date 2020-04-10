@@ -14,7 +14,6 @@ h1{
   left:calc(50% - 130px);
 }
 
-
 .loader {
   position:fixed;
   left:0;
@@ -24,8 +23,8 @@ h1{
   filter:hue-rotate(0deg);
   background:linear-gradient(45deg,#0f8,#08f);
   animation:hue 10000ms infinite linear;
-
 }
+
 @keyframes spinify {
   0% {
     transform: translate(0px,0px);
@@ -64,6 +63,7 @@ h1.horror{
   color: white;
   text-align: center;
   text-shadow: 4px 4px 1px black;
+  font-family: 'Bigelow Rules', cursive;
 }
 
 h1.horror::before{
