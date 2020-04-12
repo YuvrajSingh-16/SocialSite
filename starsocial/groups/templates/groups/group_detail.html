@@ -13,7 +13,11 @@
     {% if user in group.members.all %}
       <a href="{% url 'groups:leave' slug=group.slug %}"
           class='btn btn-lg btn-fill btn-warning'>
-          <span class='glyphicon glyphicon-remove-circle'></span>Leave</a>
+      <span class='glyphicon glyphicon-remove-circle'></span>Leave</a>
+
+      <a href="{% url 'posts:create' %}"
+          class='btn btn-lg btn-fill btn-warning'>
+      <span class='glyphicon glyphicon-remove-circle'></span>Comment</a>
     {% else %}
 
     <a href="{% url 'groups:join' slug=group.slug %}"
@@ -27,15 +31,18 @@
 {% endblock %}
 
 {% block group_content %}
-<div class="col-md-8">
-  {% if group.posts.count == 0 %}
-    <h3>No posts in this group yet!</h3>
-  {% else %}
-    {% for post in group.posts.all %}
-      {% include 'posts/_post.html' %}
-    {% endfor %}
+  {% if user in group.members.all %}
+    <div class="col-md">
+      {% if group.posts.count == 0 %}
+        <h3>No posts in this group yet!</h3>
+      {% else %}
+        {% for post in group.posts.all %}
+          {% include 'posts/_post.html' %}
+        {% endfor %}
 
-  {% endif %}
-</div>
-
+      {% endif %}
+    </div>
+  {%else%}
+  <h3>👆 Join the Group to see the Posts 😊</h3>
+  {%endif%}
 {% endblock %}
